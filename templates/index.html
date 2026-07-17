@@ -1,516 +1,689 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Ezama Uyi Anslem | Data & Analytics Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    :root {
-      --bg: #0f172a;
-      --bg-alt: #020617;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.1);
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --card: #020617;
-      --border: #1f2937;
-      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
+<meta charset="UTF-8" />
+<title>Uyi Anslem Ezama — Data & Business Analysis</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Uyi Anslem Ezama — First-Class Computer Science graduate specialising in data analytics, business analysis and operations." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EC;
+    --sheet:#FFFFFF;
+    --ink:#151A2D;
+    --ink-soft:#5B6072;
+    --ink-faint:#8A8D9B;
+    --brass:#B4802E;
+    --brass-deep:#8A5F1E;
+    --brass-soft:#F1E4CB;
+    --rule:#DCD5C4;
+    --rule-strong:#C7BEA6;
+    --ok:#3F6E4E;
+    --font-display:'Fraunces', serif;
+    --font-mono:'IBM Plex Mono', monospace;
+    --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+  a{color:var(--brass-deep);}
+  ::selection{background:var(--brass-soft); color:var(--ink);}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  .rule{border:none; border-top:1px solid var(--rule);}
 
-    body {
-      font-family: var(--font-main);
-      background: radial-gradient(circle at top, #1e293b 0, #020617 55%, #000 100%);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+  /* ---------- layout shell ---------- */
+  .sheet{
+    max-width:980px;
+    margin:0 auto;
+    padding:0 1.5rem;
+  }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
+  /* ---------- ledger header ---------- */
+  .masthead{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,243,236,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--rule);
+  }
+  .masthead-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:1rem; padding:0.9rem 0;
+    max-width:980px; margin:0 auto; padding-left:1.5rem; padding-right:1.5rem;
+  }
+  .brand{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    text-decoration:none;
+    display:flex; align-items:center; gap:0.5rem;
+  }
+  .brand b{ color:var(--ink); font-weight:600;}
+  .brand .dot{width:6px; height:6px; border-radius:50%; background:var(--ok); display:inline-block;}
+  .masthead nav{display:flex; gap:1.4rem;}
+  .masthead nav a{
+    font-family:var(--font-mono);
+    font-size:0.76rem;
+    letter-spacing:0.04em;
+    color:var(--ink-soft);
+    text-decoration:none;
+    text-transform:uppercase;
+  }
+  .masthead nav a:hover{color:var(--brass-deep);}
+  .masthead-actions{display:flex; gap:0.6rem;}
+  @media (max-width:720px){
+    .masthead nav{display:none;}
+  }
 
-    a:hover {
-      text-decoration: underline;
-    }
+  /* buttons */
+  .btn{
+    display:inline-flex; align-items:center; gap:0.4rem;
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    letter-spacing:0.02em;
+    padding:0.5rem 0.9rem;
+    border-radius:2px;
+    border:1px solid var(--ink);
+    background:transparent;
+    color:var(--ink);
+    cursor:pointer;
+    text-decoration:none;
+    transition:background .15s ease, color .15s ease, transform .1s ease;
+  }
+  .btn:hover{background:var(--ink); color:var(--paper); text-decoration:none;}
+  .btn:active{transform:translateY(1px);}
+  .btn-solid{background:var(--ink); color:var(--paper);}
+  .btn-solid:hover{background:var(--brass-deep); border-color:var(--brass-deep); color:#fff;}
+  .btn:focus-visible, a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--brass-deep); outline-offset:2px;
+  }
 
-    .page {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2.5rem 1.5rem 4rem;
-    }
+  /* ---------- hero ledger row ---------- */
+  .hero{ padding:3.2rem 0 2.2rem; }
+  .hero-kicker{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    color:var(--brass-deep);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    margin-bottom:0.9rem;
+    display:flex; align-items:center; gap:0.6rem;
+  }
+  .hero-kicker::after{content:""; flex:1; height:1px; background:var(--rule-strong);}
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(2.1rem, 5vw, 3.4rem);
+    line-height:1.05;
+    letter-spacing:-0.01em;
+    max-width:16ch;
+  }
+  .hero h1 em{ font-style:italic; color:var(--brass-deep); font-weight:500;}
+  .hero-sub{
+    margin-top:1.1rem;
+    max-width:44ch;
+    color:var(--ink-soft);
+    font-size:1.05rem;
+  }
+  .hero-actions{ display:flex; flex-wrap:wrap; gap:0.7rem; margin-top:1.6rem;}
 
-    header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      margin-bottom: 2.5rem;
-    }
+  /* readout row: like a ledger data row of stats */
+  .readouts{
+    margin-top:2.4rem;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--ink);
+    border-bottom:1px solid var(--rule);
+  }
+  .readout{
+    padding:0.9rem 1rem 0.9rem 0;
+    border-right:1px solid var(--rule);
+  }
+  .readout:last-child{border-right:none;}
+  .readout .num{
+    font-family:var(--font-mono);
+    font-size:1.5rem;
+    font-weight:600;
+    color:var(--ink);
+    display:block;
+  }
+  .readout .label{
+    font-size:0.72rem;
+    color:var(--ink-faint);
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    margin-top:0.25rem;
+    display:block;
+  }
+  @media (max-width:720px){
+    .readouts{grid-template-columns:repeat(2,1fr);}
+    .readout:nth-child(2){border-right:none;}
+  }
 
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-    }
+  /* ---------- section scaffolding ---------- */
+  section{ padding:2.6rem 0; }
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    gap:1rem; margin-bottom:1.4rem;
+    border-bottom:1px solid var(--ink);
+    padding-bottom:0.6rem;
+  }
+  .section-head h2{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:1.5rem;
+  }
+  .section-index{
+    font-family:var(--font-mono);
+    font-size:0.75rem;
+    color:var(--ink-faint);
+  }
+  .section-note{
+    font-size:0.92rem; color:var(--ink-soft); margin-bottom:1.3rem; max-width:60ch;
+  }
 
-    .brand h1 {
-      font-size: 1.9rem;
-      letter-spacing: 0.03em;
-    }
+  /* ---------- filter chips (the interactive spine) ---------- */
+  .filter-bar{
+    display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.6rem;
+  }
+  .chip{
+    font-family:var(--font-mono);
+    font-size:0.76rem;
+    padding:0.4rem 0.8rem;
+    border:1px solid var(--rule-strong);
+    border-radius:999px;
+    background:var(--sheet);
+    color:var(--ink-soft);
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .chip:hover{ border-color:var(--brass-deep); color:var(--brass-deep);}
+  .chip.active{
+    background:var(--ink); color:var(--paper); border-color:var(--ink);
+  }
+  .chip .count{ opacity:0.6; margin-left:0.3rem; }
 
-    .brand p {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
+  /* ---------- experience / project rows ---------- */
+  .entry{
+    border:1px solid var(--rule);
+    background:var(--sheet);
+    margin-bottom:0.9rem;
+    border-radius:3px;
+    overflow:hidden;
+    transition:opacity .2s ease, transform .2s ease, max-height .2s ease;
+  }
+  .entry.hidden{ display:none; }
+  .entry-head{
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    padding:1rem 1.1rem;
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .entry-head:hover{ background:#FBF9F4; }
+  .entry-title-wrap h3{
+    font-size:1.02rem; font-weight:600; letter-spacing:-0.01em;
+  }
+  .entry-meta{
+    font-family:var(--font-mono);
+    font-size:0.76rem;
+    color:var(--ink-faint);
+    margin-top:0.25rem;
+  }
+  .entry-toggle{
+    font-family:var(--font-mono);
+    font-size:1.1rem;
+    color:var(--brass-deep);
+    width:1.4rem; height:1.4rem;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    transition:transform .2s ease;
+  }
+  .entry.open .entry-toggle{ transform:rotate(45deg); }
+  .entry-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .25s ease;
+  }
+  .entry.open .entry-body{ max-height:600px; }
+  .entry-body-inner{
+    padding:0 1.1rem 1.1rem;
+    border-top:1px solid var(--rule);
+    padding-top:0.9rem;
+    color:var(--ink-soft);
+    font-size:0.94rem;
+  }
+  .entry-body-inner ul{ padding-left:1.1rem; }
+  .entry-body-inner li{ margin-bottom:0.4rem; }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.8rem; }
+  .tag{
+    font-family:var(--font-mono);
+    font-size:0.7rem;
+    padding:0.2rem 0.55rem;
+    background:var(--brass-soft);
+    color:var(--brass-deep);
+    border-radius:2px;
+  }
 
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
+  /* ---------- skills matrix ---------- */
+  .skill-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.4rem; }
+  @media (max-width:720px){ .skill-grid{ grid-template-columns:1fr; } .readouts{grid-template-columns:repeat(2,1fr);}}
+  .skill-col-title{
+    font-family:var(--font-mono);
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-faint);
+    margin-bottom:0.8rem;
+  }
+  .skill-row{
+    display:flex; align-items:center; gap:0.8rem;
+    padding:0.55rem 0;
+    border-bottom:1px solid var(--rule);
+    font-size:0.92rem;
+  }
+  .skill-row:last-child{ border-bottom:none; }
+  .skill-name{ flex:0 0 auto; min-width:9rem; }
+  .meter{
+    flex:1; height:6px; background:var(--rule); border-radius:99px; overflow:hidden;
+  }
+  .meter > span{
+    display:block; height:100%; background:linear-gradient(90deg, var(--brass), var(--brass-deep));
+    border-radius:99px; width:0%;
+    transition:width 1s cubic-bezier(.2,.7,.3,1);
+  }
 
-    nav a {
-      font-size: 0.9rem;
-      padding: 0.4rem 0.9rem;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      background: rgba(15, 23, 42, 0.8);
-      color: var(--muted);
-    }
+  /* ---------- education / certs / achievements ---------- */
+  .stat-strip{
+    display:grid; grid-template-columns:repeat(4,1fr);
+    border:1px solid var(--rule);
+    background:var(--sheet);
+  }
+  .stat-strip div{ padding:1.1rem; border-right:1px solid var(--rule); }
+  .stat-strip div:last-child{ border-right:none; }
+  .stat-strip .stat-num{ font-family:var(--font-mono); font-weight:600; font-size:1.15rem; color:var(--brass-deep);}
+  .stat-strip .stat-label{ font-size:0.78rem; color:var(--ink-soft); margin-top:0.3rem;}
+  @media (max-width:720px){ .stat-strip{ grid-template-columns:1fr 1fr; } }
 
-    nav a:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      text-decoration: none;
-      background: rgba(15, 23, 42, 1);
-    }
+  .edu-card{
+    border:1px solid var(--rule); background:var(--sheet); padding:1.2rem;
+    display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; align-items:baseline;
+  }
+  .edu-card h3{ font-family:var(--font-display); font-weight:600; font-size:1.1rem;}
+  .edu-card .meta{ font-family:var(--font-mono); font-size:0.8rem; color:var(--ink-faint); margin-top:0.3rem;}
+  .honours-badge{
+    font-family:var(--font-mono); font-size:0.72rem; text-transform:uppercase;
+    background:var(--ok); color:#fff; padding:0.3rem 0.6rem; border-radius:2px; letter-spacing:0.04em;
+  }
 
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.8fr);
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
+  /* ---------- contact ---------- */
+  .contact-panel{
+    background:var(--ink); color:var(--paper);
+    padding:2.4rem 1.8rem; border-radius:4px;
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:1.6rem;
+  }
+  .contact-panel h2{ font-family:var(--font-display); font-weight:600; font-size:1.6rem; max-width:20ch;}
+  .contact-panel p{ color:#C9CCDA; margin-top:0.6rem; max-width:40ch; font-size:0.95rem;}
+  .contact-links{ display:flex; flex-direction:column; gap:0.7rem; font-family:var(--font-mono); font-size:0.86rem;}
+  .contact-links a{ color:var(--paper); text-decoration:none; border-bottom:1px solid rgba(246,243,236,0.35); padding-bottom:2px;}
+  .contact-links a:hover{ border-color:var(--paper); }
+  .contact-panel .btn{ border-color:var(--paper); color:var(--paper); }
+  .contact-panel .btn:hover{ background:var(--paper); color:var(--ink); }
 
-    .hero-main h2 {
-      font-size: 2.1rem;
-      margin-bottom: 0.75rem;
-    }
+  footer{
+    padding:1.8rem 0 3rem;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.6rem;
+    font-family:var(--font-mono); font-size:0.72rem; color:var(--ink-faint);
+  }
 
-    .hero-main p {
-      color: var(--muted);
-      max-width: 36rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .tag {
-      font-size: 0.8rem;
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--muted);
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-      padding: 0.55rem 1.2rem;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      font-size: 0.9rem;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #0ea5e9, #22c55e);
-      color: #0b1120;
-      font-weight: 600;
-    }
-
-    .btn-primary:hover {
-      filter: brightness(1.05);
-      text-decoration: none;
-    }
-
-    .btn-ghost {
-      border-color: rgba(148, 163, 184, 0.5);
-      color: var(--muted);
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .hero-side {
-      border-radius: 1.25rem;
-      padding: 1.25rem 1.4rem;
-      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 55%),
-                  radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.18), transparent 55%),
-                  rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
-    }
-
-    .hero-side h3 {
-      font-size: 1rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .hero-side p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 0.75rem;
-    }
-
-    .hero-side ul {
-      list-style: none;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    .hero-side li::before {
-      content: "• ";
-      color: var(--accent);
-    }
-
-    section {
-      margin-bottom: 2.75rem;
-    }
-
-    section h2 {
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-    }
-
-    .section-subtitle {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 1.25rem;
-    }
-
-    .grid {
-      display: grid;
-      gap: 1.25rem;
-    }
-
-    .grid-2 {
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    }
-
-    .card {
-      background: rgba(15, 23, 42, 0.95);
-      border-radius: 0.9rem;
-      padding: 1rem 1.1rem;
-      border: 1px solid rgba(31, 41, 55, 0.9);
-    }
-
-    .card h3 {
-      font-size: 1rem;
-      margin-bottom: 0.35rem;
-    }
-
-    .card-meta {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .card p {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin-top: 0.6rem;
-    }
-
-    .pill {
-      font-size: 0.75rem;
-      padding: 0.15rem 0.55rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      color: var(--muted);
-    }
-
-    .timeline-item {
-      border-left: 2px solid rgba(55, 65, 81, 0.9);
-      padding-left: 0.9rem;
-      margin-left: 0.3rem;
-      position: relative;
-    }
-
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: -6px;
-      top: 0.35rem;
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.25);
-    }
-
-    .timeline-item + .timeline-item {
-      margin-top: 1rem;
-    }
-
-    footer {
-      border-top: 1px solid rgba(31, 41, 55, 0.9);
-      padding-top: 1.5rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 0.75rem;
-    }
-
-    footer a {
-      font-size: 0.85rem;
-    }
-
-    @media (max-width: 800px) {
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-  </style>
+  .sr-only{
+    position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0);
+  }
+</style>
 </head>
 <body>
-  <div class="page">
-    <header>
-      <div class="brand">
-        <h1>Ezama Uyi Anslem</h1>
-        <p>Junior Data & Analytics | Finance & AI Graduate | Edinburgh, UK</p>
-      </div>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
 
-    <main>
-      <section class="hero" id="about">
-        <div class="hero-main">
-          <h2>Turning data into decisions and stories that actually matter.</h2>
-          <p>
-            I'm a final‑year BSc Computer Science student at Edinburgh Napier University (graduating June 2026),
-            with hands‑on experience in data analytics, teaching, and a growing focus on finance and AI.
-            I enjoy cleaning messy data, building clear visuals, and explaining insights in plain language.
-          </p>
-
-          <div class="hero-tags">
-            <span class="tag">Python · SQL · Excel · Tableau</span>
-            <span class="tag">Data Analytics & Visualisation</span>
-            <span class="tag">Finance & AI Graduate Path</span>
-          </div>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#projects">View my projects</a>
-            <a class="btn btn-ghost" href="#contact">Download CV / Contact</a>
-          </div>
-        </div>
-
-        <aside class="hero-side">
-          <h3>What I'm looking for</h3>
-          <p>
-            Graduate and junior roles in data, analytics, or finance where I can work with real datasets,
-            learn from experienced teams, and contribute to meaningful decisions.
-          </p>
-          <ul>
-            <li>Graduate data / finance / analytics programmes</li>
-            <li>Junior Data Analyst / BI / Reporting roles</li>
-            <li>Opportunities to work with SQL, Python, dashboards & stakeholders</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section id="experience">
-        <h2>Experience</h2>
-        <p class="section-subtitle">
-          Recent roles that shaped how I work with data, people, and problems.
-        </p>
-
-        <div class="grid grid-2">
-          <div class="card timeline-item">
-            <h3>Course Demonstrator (Data Analytics)</h3>
-            <div class="card-meta">
-              Edinburgh Napier University · 2025 · Part‑time
-            </div>
-            <p>
-              Supported students with data cleaning, transformation and visualisation using Python, Weka,
-              Excel and OpenRefine. Created step‑by‑step guides to help students troubleshoot common issues,
-              improving session pace and understanding.
-            </p>
-            <div class="pill-row">
-              <span class="pill">Teaching & Mentoring</span>
-              <span class="pill">Data Cleaning</span>
-              <span class="pill">Explaining Complex Ideas</span>
-            </div>
-          </div>
-
-          <div class="card timeline-item">
-            <h3>Data & Analytics Projects</h3>
-            <div class="card-meta">
-              Academic & personal · Ongoing
-            </div>
-            <p>
-              Built analytical workflows and dashboards for coursework and personal projects, focusing on
-              exploratory analysis, visualisation and clear communication of findings. Used Python, SQL and
-              Tableau to work with real‑world style datasets.
-            </p>
-            <div class="pill-row">
-              <span class="pill">Python</span>
-              <span class="pill">SQL</span>
-              <span class="pill">Tableau</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects">
-        <h2>Selected projects</h2>
-        <p class="section-subtitle">
-          A few examples of how I work with data. Replace these with your real projects.
-        </p>
-
-        <div class="grid grid-2">
-          <div class="card">
-            <h3>Customer Churn Analysis</h3>
-            <div class="card-meta">Python · Pandas · Visualisation</div>
-            <p>
-              Analysed a telecom churn dataset to identify key drivers of customer loss. Cleaned and
-              engineered features, built visual summaries, and presented recommendations focused on
-              retention strategies.
-            </p>
-            <div class="pill-row">
-              <span class="pill">EDA</span>
-              <span class="pill">Feature Engineering</span>
-              <span class="pill">Storytelling</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>Sales & Revenue Dashboard</h3>
-            <div class="card-meta">Tableau · Excel</div>
-            <p>
-              Built an interactive dashboard to track revenue, regional performance and product trends.
-              Focused on clarity, drill‑downs and making it easy for non‑technical users to answer key
-              business questions.
-            </p>
-            <div class="pill-row">
-              <span class="pill">Dashboard Design</span>
-              <span class="pill">KPI Tracking</span>
-              <span class="pill">Stakeholder‑friendly</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="skills">
-        <h2>Skills</h2>
-        <p class="section-subtitle">
-          The tools and strengths I bring into a data or finance‑focused team.
-        </p>
-
-        <div class="grid grid-2">
-          <div class="card">
-            <h3>Technical</h3>
-            <ul>
-              <li>Python (Pandas, NumPy, basic visualisation)</li>
-              <li>SQL (querying, joins, aggregations)</li>
-              <li>Excel (formulas, cleaning, basic dashboards)</li>
-              <li>Tableau / data visualisation</li>
-              <li>Basic understanding of CRM & financial data concepts</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Core strengths</h3>
-            <ul>
-              <li>Explaining complex ideas in simple language</li>
-              <li>High attention to detail and data quality</li>
-              <li>Curious, proactive and comfortable learning new tools</li>
-              <li>Interest in finance, AI and data‑driven decisions</li>
-              <li>Balancing multiple priorities and deadlines</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact">
-        <h2>Contact & CV</h2>
-        <p class="section-subtitle">
-          Open to graduate schemes, junior data roles and finance/AI‑related opportunities in the UK.
-        </p>
-
-        <div class="grid grid-2">
-          <div class="card">
-            <h3>Get in touch</h3>
-            <p>Email: <a href="mailto:A3ezama@gmail.com">A3ezama@gmail.com</a></p>
-            <p>Location: Edinburgh / UK‑wide</p>
-            <p>LinkedIn:
-              <a href="https://www.linkedin.com/in/uyi-ezama-b883a0331" target="_blank">
-                linkedin.com/in/uyi-ezama-b883a0331
-              </a>
-            </p>
-          </div>
-          <div class="card">
-            <h3>CV</h3>
-            <p>
-              I have got my CV attached below
-            </p>
-            <p>
-              <a href="{{ url_for('static', filename='CV_.docx') }}" target="_blank">Download my CV (PDF)</a>
-            </p>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <span>© <span id="year"></span> Ezama Uyi Anslem</span>
-      <span>Built with HTML & CSS · Simple, fast, and to the point.</span>
-    </footer>
+<div class="masthead">
+  <div class="masthead-inner">
+    <a href="#top" class="brand"><span class="dot"></span> <b>U. A. EZAMA</b> — DATA / BUSINESS ANALYSIS</a>
+    <nav>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="masthead-actions">
+      <a class="btn btn-solid" href="Uyi_Anslem_Ezama_CV.docx" download>Download CV</a>
+    </div>
   </div>
+</div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+<div class="sheet" id="top">
+
+  <section class="hero">
+    <p class="hero-kicker">Edinburgh, UK · Open to relocation</p>
+    <h1>Turns raw data into <em>decisions</em> a business can act on.</h1>
+    <p class="hero-sub">
+      First-Class Computer Science graduate (Edinburgh Napier University) with hands-on experience
+      across data analytics, business analysis and operations. Comfortable moving between SQL,
+      Python, Power BI and a stakeholder meeting — seeking a graduate role in operations or
+      financial services with a global organisation.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-solid" href="#experience">See my experience</a>
+      <a class="btn" href="mailto:A3ezama@gmail.com">Email me</a>
+      <a class="btn" href="https://www.linkedin.com/in/uyi-ezama-b883a0331" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn" href="https://github.com/Anslem30" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+
+    <div class="readouts">
+      <div class="readout"><span class="num">1st</span><span class="label">Class Honours, BSc CS</span></div>
+      <div class="readout"><span class="num">CIKM ’26</span><span class="label">Research under peer review</span></div>
+      <div class="readout"><span class="num">~50%</span><span class="label">Algorithm perf. improvement</span></div>
+      <div class="readout"><span class="num">5</span><span class="label">Core data & BI tools</span></div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <section id="experience">
+    <div class="section-head">
+      <h2>Experience</h2>
+      <span class="section-index">§ 01</span>
+    </div>
+    <p class="section-note">Filter by what matters most to you — tap a tag, then tap a row to expand it.</p>
+
+    <div class="filter-bar" id="expFilters" role="group" aria-label="Filter experience by skill"></div>
+
+    <div id="expList"></div>
+  </section>
+
+  <hr class="rule" />
+
+  <section id="projects">
+    <div class="section-head">
+      <h2>Selected projects</h2>
+      <span class="section-index">§ 02</span>
+    </div>
+    <p class="section-note">Real academic and independent work — same filters as above carry through.</p>
+
+    <div class="filter-bar" id="projFilters" role="group" aria-label="Filter projects by skill"></div>
+
+    <div id="projList"></div>
+  </section>
+
+  <hr class="rule" />
+
+  <section id="skills">
+    <div class="section-head">
+      <h2>Skills</h2>
+      <span class="section-index">§ 03</span>
+    </div>
+    <p class="section-note">Self-rated for context — happy to walk through any of these in an interview.</p>
+
+    <div class="skill-grid">
+      <div>
+        <div class="skill-col-title">Technical</div>
+        <div id="techSkills"></div>
+      </div>
+      <div>
+        <div class="skill-col-title">Applied / Business</div>
+        <div id="bizSkills"></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <section id="education">
+    <div class="section-head">
+      <h2>Education & achievements</h2>
+      <span class="section-index">§ 04</span>
+    </div>
+
+    <div class="edu-card" style="margin-bottom:1rem;">
+      <div>
+        <h3>BSc (Hons) Computer Science</h3>
+        <div class="meta">Edinburgh Napier University · 2024 – 2026</div>
+      </div>
+      <span class="honours-badge">First-Class Honours</span>
+    </div>
+
+    <div class="edu-card" style="margin-bottom:1.4rem;">
+      <div>
+        <h3>IBM Data Analyst Professional Certificate</h3>
+        <div class="meta">Certification</div>
+      </div>
+    </div>
+
+    <div class="stat-strip">
+      <div><div class="stat-num">1st</div><div class="stat-label">Honours in Computer Science</div></div>
+      <div><div class="stat-num">CIKM 2026</div><div class="stat-label">Honours research submitted for peer review</div></div>
+      <div><div class="stat-num">Demonstrator</div><div class="stat-label">Selected for Data Analytics modules</div></div>
+      <div><div class="stat-num">~50%</div><div class="stat-label">Algorithm performance gain via optimisation</div></div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <section id="contact">
+    <div class="contact-panel">
+      <div>
+        <h2>Let's talk about a role.</h2>
+        <p>Open to graduate schemes and junior positions in data analytics, business analysis and operations across the UK.</p>
+        <a class="btn" href="Uyi_Anslem_Ezama_CV.docx" download style="margin-top:1.2rem;">Download full CV</a>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:A3ezama@gmail.com">A3ezama@gmail.com</a>
+        <a href="tel:+447778696202">+44 7778 696202</a>
+        <a href="https://www.linkedin.com/in/uyi-ezama-b883a0331" target="_blank" rel="noopener">linkedin.com/in/uyi-ezama-b883a0331</a>
+        <a href="https://github.com/Anslem30" target="_blank" rel="noopener">github.com/Anslem30</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© <span id="year"></span> Uyi Anslem Ezama</span>
+    <span>Edinburgh, UK</span>
+  </footer>
+</div>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* ---------------- data (sourced from CV) ---------------- */
+const experience = [
+  {
+    title: "Course Demonstrator — Data Analytics",
+    meta: "Edinburgh Napier University · Sept 2025 – Dec 2025",
+    tags: ["SQL","Python","Power BI","Communication"],
+    bullets: [
+      "Supported undergraduate laboratories covering SQL, Python, Microsoft Excel and Power BI.",
+      "Diagnosed and resolved technical and analytical issues while explaining concepts to students with different experience levels.",
+      "Worked closely with academic staff to deliver practical sessions efficiently and consistently.",
+      "Strengthened stakeholder communication, documentation and problem-solving skills."
+    ]
+  },
+  {
+    title: "Room Attendant",
+    meta: "The Edinburgh Grand · Apr 2024 – Present",
+    tags: ["Process","Communication"],
+    bullets: [
+      "Maintained exceptional quality standards within a luxury hospitality environment.",
+      "Managed competing priorities under strict operational deadlines while maintaining accuracy.",
+      "Built a reputation for reliability, teamwork and attention to detail."
+    ]
+  }
+];
+
+const projects = [
+  {
+    title: "FairClean — Fairness-Aware Data Cleaning Framework",
+    meta: "Honours Project · Research submitted to CIKM 2026",
+    tags: ["Python","SQL","Communication"],
+    bullets: [
+      "Designed and developed a Python framework to detect inconsistent and potentially biased records, improving data quality for downstream analysis.",
+      "Applied data validation, statistical analysis and technical documentation throughout.",
+      "Research submitted to the ACM International Conference on Information and Knowledge Management (CIKM 2026) for peer review."
+    ]
+  },
+  {
+    title: "Business Intelligence & SQL Analysis",
+    meta: "Independent project",
+    tags: ["SQL","Power BI"],
+    bullets: [
+      "Designed relational databases and SQL queries to extract, validate and reconcile structured datasets.",
+      "Produced reports to support informed decision-making."
+    ]
+  },
+  {
+    title: "Tableau Reporting Dashboard",
+    meta: "Independent project",
+    tags: ["Power BI","Communication"],
+    bullets: [
+      "Built interactive dashboards to communicate trends and key metrics using validated datasets."
+    ]
+  }
+];
+
+const techSkills = [
+  ["SQL", 90], ["Python", 85], ["Microsoft Excel", 88], ["Power BI", 82], ["Tableau", 78]
+];
+const bizSkills = [
+  ["Business Analysis", 85], ["Data Validation & QA", 88], ["Process Improvement", 80],
+  ["Stakeholder Communication", 88], ["Requirements Gathering", 78]
+];
+
+/* ---------------- render helpers ---------------- */
+function allTags(items){
+  const s = new Set();
+  items.forEach(i => i.tags.forEach(t => s.add(t)));
+  return [...s];
+}
+
+function renderFilters(container, items, onChange){
+  const tags = allTags(items);
+  let active = null;
+  const all = document.createElement("button");
+  all.className = "chip active";
+  all.textContent = "All";
+  all.type = "button";
+  all.addEventListener("click", () => setActive(null));
+  container.appendChild(all);
+
+  tags.forEach(tag => {
+    const count = items.filter(i => i.tags.includes(tag)).length;
+    const chip = document.createElement("button");
+    chip.className = "chip";
+    chip.type = "button";
+    chip.innerHTML = tag + ' <span class="count">' + count + '</span>';
+    chip.addEventListener("click", () => setActive(tag, chip));
+    container.appendChild(chip);
+  });
+
+  function setActive(tag, chipEl){
+    active = tag;
+    [...container.children].forEach(c => c.classList.remove("active"));
+    (chipEl || all).classList.add("active");
+    onChange(active);
+  }
+}
+
+function renderEntries(container, items){
+  container.innerHTML = "";
+  items.forEach((item, idx) => {
+    const el = document.createElement("div");
+    el.className = "entry";
+    el.dataset.tags = item.tags.join("|");
+    el.innerHTML = `
+      <div class="entry-head" role="button" tabindex="0" aria-expanded="false">
+        <div class="entry-title-wrap">
+          <h3>${item.title}</h3>
+          <div class="entry-meta">${item.meta}</div>
+        </div>
+        <div class="entry-toggle">+</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-body-inner">
+          <ul>${item.bullets.map(b => `<li>${b}</li>`).join("")}</ul>
+          <div class="tag-row">${item.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+        </div>
+      </div>
+    `;
+    const head = el.querySelector(".entry-head");
+    function toggle(){
+      const open = el.classList.toggle("open");
+      head.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    head.addEventListener("click", toggle);
+    head.addEventListener("keydown", e => {
+      if(e.key === "Enter" || e.key === " "){ e.preventDefault(); toggle(); }
+    });
+    container.appendChild(el);
+  });
+}
+
+function applyFilter(container, tag){
+  [...container.children].forEach(el => {
+    const tags = el.dataset.tags.split("|");
+    el.classList.toggle("hidden", tag && !tags.includes(tag));
+  });
+}
+
+function renderSkillGroup(container, list){
+  container.innerHTML = "";
+  list.forEach(([name, pct]) => {
+    const row = document.createElement("div");
+    row.className = "skill-row";
+    row.innerHTML = `
+      <span class="skill-name">${name}</span>
+      <span class="meter"><span data-pct="${pct}"></span></span>
+    `;
+    container.appendChild(row);
+  });
+}
+
+/* ---------------- wire it up ---------------- */
+const expList = document.getElementById("expList");
+const projList = document.getElementById("projList");
+renderEntries(expList, experience);
+renderEntries(projList, projects);
+renderFilters(document.getElementById("expFilters"), experience, tag => applyFilter(expList, tag));
+renderFilters(document.getElementById("projFilters"), projects, tag => applyFilter(projList, tag));
+
+renderSkillGroup(document.getElementById("techSkills"), techSkills);
+renderSkillGroup(document.getElementById("bizSkills"), bizSkills);
+
+/* animate meters in once visible */
+const meters = document.querySelectorAll(".meter > span");
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.style.width = e.target.dataset.pct + "%";
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.4 });
+meters.forEach(m => io.observe(m));
+
+/* auto-open the first experience entry so the page doesn't feel empty */
+if(expList.firstElementChild){
+  expList.firstElementChild.classList.add("open");
+  expList.firstElementChild.querySelector(".entry-head").setAttribute("aria-expanded","true");
+}
+</script>
+
 </body>
 </html>
