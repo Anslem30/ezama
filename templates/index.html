@@ -533,6 +533,7 @@ const projects = [
     title: "FairClean — Fairness-Aware Data Cleaning Framework",
     meta: "Honours Project · Research submitted to CIKM 2026",
     tags: ["Python","SQL","Communication"],
+    url: "https://www.fairclean.solutions/",
     bullets: [
       "Designed and developed a Python framework to detect inconsistent and potentially biased records, improving data quality for downstream analysis.",
       "Applied data validation, statistical analysis and technical documentation throughout.",
@@ -551,7 +552,8 @@ const projects = [
   {
     title: "Tableau Reporting Dashboard",
     meta: "Independent project",
-    tags: ["Tableau","Communication"],
+    tags: ["Power BI","Communication"],
+    url: "https://cwh-eight.vercel.app/",
     bullets: [
       "Built interactive dashboards to communicate trends and key metrics using validated datasets."
     ]
@@ -559,7 +561,7 @@ const projects = [
 ];
 
 const techSkills = [
-  ["SQL", 90], ["Python", 85], ["Microsoft Excel", 88], ["Power BI", 78], ["Tableau", 85]
+  ["SQL", 90], ["Python", 85], ["Microsoft Excel", 88], ["Power BI", 82], ["Tableau", 78]
 ];
 const bizSkills = [
   ["Business Analysis", 85], ["Data Validation & QA", 88], ["Process Improvement", 80],
@@ -619,6 +621,7 @@ function renderEntries(container, items){
         <div class="entry-body-inner">
           <ul>${item.bullets.map(b => `<li>${b}</li>`).join("")}</ul>
           <div class="tag-row">${item.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+          ${item.url ? `<a class="btn" href="${item.url}" target="_blank" rel="noopener" style="margin-top:0.9rem;">View live project ↗</a>` : ""}
         </div>
       </div>
     `;
